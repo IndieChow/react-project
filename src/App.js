@@ -38,7 +38,12 @@ function App() {
       alert("ERROR: No Space On Deck")
       return
     }
-    const promise = fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonNameRef.current.value.toLowerCase()) // API CALL ('1d')
+
+    // FORMAT USER SEARCH INPUT FOR FETCH CALL:
+    var input = pokemonNameRef.current.value.toLowerCase() 
+    input = input.split(" ").join("-")
+    
+    const promise = fetch("https://pokeapi.co/api/v2/pokemon/" + input) // API CALL ('1d')
     myCallback(promise);
     
     pokemonNameRef.current.value = null
